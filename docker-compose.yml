@@ -1,0 +1,16 @@
+# 
+# USER="xxx" PASSWORD="xxx" REMOTEHOST="xxx" docker compose up
+# 
+version: '3'
+
+services:
+  sstpc:
+    container_name: sstpc
+    image: "sstpc"
+    restart: unless-stopped
+    network_mode: "bridge"
+    environment:
+      REMOTEHOST: ${REMOTEHOST}
+      USER: ${USER}
+      PASSWORD: ${PASSWORD}
+    privileged: true 

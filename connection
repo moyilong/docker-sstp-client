@@ -1,0 +1,21 @@
+remotename      connection
+linkname        connection
+ipparam         connection
+pty             "sstpc --ipparam connection $REMOTEHOST --log-level 4 --log-stdout --tls-ext noauth --user $USER --password $PASSWORD --save-server-route"
+# --nolaunchpppd 
+name            $USER
+plugin          sstp-pppd-plugin.so
+sstp-sock       /var/run/sstpc/sstpc-connection
+usepeerdns
+refuse-pap
+refuse-eap
+refuse-chap
+refuse-mschap
+require-mppe
+require-mschap-v2
+noauth
+defaultroute
+persist
+debug
+usepeerdns
+#file /etc/ppp/options.pptp

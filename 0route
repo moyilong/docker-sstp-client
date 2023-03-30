@@ -1,0 +1,5 @@
+#!/bin/bash
+NET=`echo $4 | cut -d . -f 1,2,3`
+route add -net $NET.0/24 dev $1
+N=`echo $5 | cut -d . -f 1,2,3`
+route add -net $N.0/24 dev $1
