@@ -4,7 +4,7 @@ COPY entry.sh /usr/bin/
 RUN chmod +x /usr/bin/entry.sh
 
 COPY 0route /etc/ppp/ip-up.d/
-# RUN chmod +x /etc/ppp/ip-up.d/0route
+RUN chmod +x /etc/ppp/ip-up.d/0route
 
 # COPY connection /etc/ppp/peers/
 
