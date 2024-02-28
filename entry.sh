@@ -9,6 +9,11 @@ fi
 
 # echo "$USER connection '$PASSWORD' *" | tee -a /etc/ppp/chap-secrets
 
+
+if [ ! "$MODPROBE" == "" ]; then
+  modprobe ppp_generic
+fi
+
 sstpc_args=(
     "--user" "$USER"
     "--password" "$PASSWORD"

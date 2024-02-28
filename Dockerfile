@@ -1,16 +1,26 @@
 FROM ubuntu:latest
 
-COPY entry.sh /usr/bin/
-RUN chmod +x /usr/bin/entry.sh
-
-COPY 0route /etc/ppp/ip-up.d/
-RUN chmod +x /etc/ppp/ip-up.d/0route
 
 # COPY connection /etc/ppp/peers/
 
-RUN apt update
-RUN apt install -y sstp-client ppp pptp-linux ca-certificates openssl net-tools --no-install-recommends
-#RUN apt install -y sstp-client ppp pptp-linux ca-certificates openssl net-tools iproute2 syslog-ng --no-install-recommends
+RUN sed -i \
+        -e 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' \
+        -e 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' \
+        /etc/apt/sources.list && \
+        apt update
+
+RUN apt update && apt upgrade -y && \
+    apt install -y --no-install-recommends \
+        sstp-client ppp pptp-linux ca-certificates openssl net-tools dos2unix
+
+
+COPY entry.sh /usr/bin/
+COPY 0route /etc/ppp/ip-up.d/
+
+RUN chmod +x /usr/bin/entry.sh && \
+    chmod +x /etc/ppp/ip-up.d/0route && \
+    dos2unix /usr/bin/entry.sh && \
+    dos2unix /etc/ppp/ip-up.d/0route
 
 ARG BUILD_DATE
 ARG IMAGE_VERSION
