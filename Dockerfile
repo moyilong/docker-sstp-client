@@ -28,4 +28,5 @@ ARG IMAGE_VERSION
 LABEL build-date=$BUILD_DATE
 LABEL image-version=$IMAGE_VERSION
 
+
 ENTRYPOINT [ "/usr/bin/entry.sh" ]

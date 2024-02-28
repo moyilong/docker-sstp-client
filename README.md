@@ -25,6 +25,7 @@ services:
       REMOTEHOST: ${REMOTEHOST}
       USER: ${USER}
       PASSWORD: ${PASSWORD}
+      MODPROBE: ppp_generic
 
   container_to_connect_sstp_network:
     image: xxx/xxx
