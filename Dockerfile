@@ -2,11 +2,13 @@ FROM ubuntu:22.04 as base
 
 ENV DEBIAN_FRONTEND=noninteractive
 # COPY connection /etc/ppp/peers/
-
-RUN sed -i \
-        -e 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' \
-        -e 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' \
-        /etc/apt/sources.list
+ARG USE_MIRROR true
+RUN if [ ! "$USE_MIRROR" == "false" ]; then \
+         sed -i \
+            -e 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' \
+            -e 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' \
+            /etc/apt/sources.list && \
+    fi
         
 
 RUN apt update && apt upgrade -y
