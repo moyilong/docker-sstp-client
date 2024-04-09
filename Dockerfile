@@ -11,7 +11,7 @@ FROM base as build
 RUN apt update && apt install --fix-missing -y \
         git git-lfs build-essential autoconf libtool-bin pkg-config
 
-RUN git clone --depth 1 https://gitlab.com/sstp-project/sstp-client/ /src
+RUN git clone --depth 1 -v 1.0.17 https://gitlab.com/sstp-project/sstp-client/ /src
 
 WORKDIR /src
 
