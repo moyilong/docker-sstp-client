@@ -34,7 +34,7 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 sysctl net.ipv6.conf.default.disable_ipv6=1
 
 # /etc/init.d/syslog-ng start
-
+mkdir -p /usr/local/var/run/sstpc
 sstpc "${sstpc_args[@]}"
 
 #pon connection
