@@ -23,7 +23,6 @@ RUN ls /usr/include/pppd
 RUN ./autogen.sh
 
 RUN ./configure \
-        --prefix=/ \
         --disable-shared
 
 
