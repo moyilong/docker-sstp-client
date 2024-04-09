@@ -44,8 +44,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/moyilong/docker-sstp-client:latest
-          buildArgs:
-            - USE_MIRROR=false
+          buildArgs: USE_MIRROR=false
+            
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
