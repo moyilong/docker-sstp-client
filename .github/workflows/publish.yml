@@ -44,7 +44,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/moyilong/docker-sstp-client:latest
-          build-args:
+          buildArgs:
             - USE_MIRROR=false
 
       - name: Image digest
