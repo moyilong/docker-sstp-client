@@ -23,7 +23,7 @@ RUN ls /usr/include/pppd
 RUN ./autogen.sh
 
 RUN ./configure \
-        --prefix=/usr \
+        --prefix=/ \
         --disable-shared
 
 
@@ -37,7 +37,8 @@ RUN make install DESTDIR=/install
 FROM base
 
 RUN apt update && apt install -y --no-install-recommends --fix-missing \
-        ppp pptp-linux ca-certificates openssl net-tools dos2unix libevent-2.1-7
+        ppp pptp-linux ca-certificates openssl net-tools dos2unix libevent-2.1-7 \
+        ca-certificates
 
 
 COPY entry.sh /usr/bin/
