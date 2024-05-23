@@ -3,7 +3,7 @@ FROM ubuntu:24.04 as base
 
 RUN apt update && apt install -y --no-install-recommends --fix-missing \
         ppp pptp-linux ca-certificates openssl net-tools dos2unix \
-        $(sudo apt list | grep libevent | grep openssl | awk -F '/' '{print $1}')
+        $(sudo apt list | grep libevent | awk -F '/' '{print $1}')
 
 ENV DEBIAN_FRONTEND=noninteractive
 # COPY connection /etc/ppp/peers/
