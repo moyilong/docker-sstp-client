@@ -29,14 +29,15 @@ RUN ls /usr/include/pppd
 
 RUN ./autogen.sh \
         --disable-shared \
-        --prefix=/ \
         --with-pic \
         --with-gnu-ld
 
 
 RUN make -j 
 
-RUN make install DESTDIR=/install
+RUN make install DESTDIR=/install/
+
+RUN find /install
 
 FROM base
 
@@ -54,7 +55,7 @@ ARG IMAGE_VERSION
 LABEL build-date=$BUILD_DATE
 LABEL image-version=$IMAGE_VERSION
 
-COPY --from=build /install /
+COPY --from=build /install/ /
 
 RUN ldd $(which sstpc)
 
