@@ -39,7 +39,8 @@ RUN make install DESTDIR=/install
 FROM base
 
 RUN apt update && apt install -y --no-install-recommends --fix-missing \
-        ppp pptp-linux ca-certificates openssl net-tools dos2unix libevent-2.1-7
+        ppp pptp-linux ca-certificates openssl net-tools dos2unix \
+        $(sudo apt list | grep libevent | grep openssl | awk -F '/' '{print $1}')
 
 COPY entry.sh /usr/bin/
 COPY 0route /etc/ppp/ip-up.d/
