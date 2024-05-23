@@ -29,7 +29,7 @@ RUN ls /usr/include/pppd
 
 RUN ./autogen.sh \
         --disable-shared \
-        --prefix=/usr \
+        --prefix=/ \
         --with-pic \
         --with-gnu-ld
 
