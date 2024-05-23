@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as base
+FROM ubuntu:24.04 as base
 
 ENV DEBIAN_FRONTEND=noninteractive
 # COPY connection /etc/ppp/peers/
@@ -11,7 +11,7 @@ FROM base as build
 RUN apt update && apt install --fix-missing -y \
         git git-lfs build-essential autoconf libtool-bin pkg-config
 
-RUN git clone --depth 1 -b 1.0.17 https://gitlab.com/sstp-project/sstp-client/ /src
+RUN git clone --depth 1 -b 1.0.19 https://gitlab.com/sstp-project/sstp-client/ /src
 
 WORKDIR /src
 
@@ -23,7 +23,10 @@ RUN ls /usr/include/pppd
 RUN ./autogen.sh
 
 RUN ./configure \
-        --disable-shared
+        --disable-shared \
+        --prefix=/usr \
+        --with-pic \
+        --with-gnu-ld
 
 
 RUN make -j 
